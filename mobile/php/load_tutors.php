@@ -8,7 +8,6 @@ if (!isset($_POST)) {
 include_once("dbconnect.php");
 $results_per_page = 5;
 $pageno = (int)$_POST['pageno'];
-//$search = $_POST['search'];
 $page_first_result = ($pageno - 1) * $results_per_page;
 
 $sqlloadtutors = "SELECT `tbl_tutors`.`tutor_id`, `tbl_tutors`.`tutor_email`, `tbl_tutors`.`tutor_phone`, 

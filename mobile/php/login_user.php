@@ -19,6 +19,16 @@ if($num_rows>0){
         $user['phoneno'] = $row['user_phoneno'];
         $user['homeaddress'] = $row['user_homeaddress'];
     }
+    $sqlgetqty = "SELECT * FROM tbl_carts WHERE user_email = '$email' AND cart_status IS NULL";
+    $result = $conn->query($sqlgetqty);
+    $number_of_result = $result->num_rows;
+    $carttotal = 0;
+    while($row = $result->fetch_assoc()) {
+        $carttotal = $row['cart_qty'] + $carttotal;
+    }
+    $mycart = array();
+    $user['cart'] =$carttotal;
+
     $response = array('status' => 'success', 'data' => $user);
     sendJsonResponse($response);
 }else{
